@@ -121,6 +121,7 @@ export class Game {
 
         return winner;
       } else {
+        console.log("Answer was correct but still in penalty box, moving to next player");
         this.currentPlayer += 1;
         if (this.currentPlayer == this.players.length) this.currentPlayer = 0;
         return true;
