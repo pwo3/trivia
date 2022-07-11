@@ -1,6 +1,7 @@
 export type Category = "pop" | "science" | "sports" | "rock";
 
-const capitalizeFirstLetter = (str: string) => {
+// Move to utils
+export const capitalizeFirstLetter = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 

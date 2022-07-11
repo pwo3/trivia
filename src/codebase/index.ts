@@ -1,4 +1,5 @@
-import { Questions } from "./Questions";
+import { getCurrentCategory } from "./Board";
+import { capitalizeFirstLetter, Questions } from "./Questions";
 
 /* eslint-disable */
 export class Game {
@@ -68,22 +69,7 @@ export class Game {
   }
 
   private currentCategory(): string {
-    if (this.places[this.currentPlayer] == 0) return "Pop";
-    if (this.places[this.currentPlayer] == 4) return "Pop";
-    if (this.places[this.currentPlayer] == 8) {
-      return "Pop";
-    }
-    if (this.places[this.currentPlayer] == 1) return "Science";
-    if (this.places[this.currentPlayer] == 5) {
-      return "Science";
-    }
-    if (this.places[this.currentPlayer] == 9) {
-      return "Science";
-    }
-    if (this.places[this.currentPlayer] == 2) return "Sports";
-    if (this.places[this.currentPlayer] == 6) return "Sports";
-    if (this.places[this.currentPlayer] == 10) return "Sports";
-    return "Rock";
+    return capitalizeFirstLetter(getCurrentCategory(this.places[this.currentPlayer]));
   }
 
   private didPlayerWin(): boolean {
