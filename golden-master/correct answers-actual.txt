@@ -9,6 +9,8 @@ The category is Science
 Science Question 0
 Answer was correct!!!!
 Chet now has 1 Gold Coins.
+Player 0 won the game
+Player 1 won the game
 Pat is the current player
 They have rolled a 4
 Pat's new location is 4
@@ -16,6 +18,8 @@ The category is Pop
 Pop Question 0
 Answer was correct!!!!
 Pat now has 1 Gold Coins.
+Player 1 won the game
+Player 0 won the game
 Chet is the current player
 They have rolled a 5
 Chet's new location is 6
@@ -23,6 +27,8 @@ The category is Sports
 Sports Question 0
 Answer was correct!!!!
 Chet now has 2 Gold Coins.
+Player 0 won the game
+Player 1 won the game
 Pat is the current player
 They have rolled a 2
 Pat's new location is 6
@@ -30,3 +36,5 @@ The category is Sports
 Sports Question 1
 Answer was correct!!!!
 Pat now has 2 Gold Coins.
+Player 1 won the game
+Player 0 won the game

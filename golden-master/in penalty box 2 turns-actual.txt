@@ -16,6 +16,8 @@ The category is Sports
 Sports Question 0
 Answer was correct!!!!
 Pat now has 1 Gold Coins.
+Player 1 won the game
+Player 0 won the game
 Chet is the current player
 They have rolled a 2
 Chet is not getting out of the penalty box
@@ -28,6 +30,8 @@ The category is Sports
 Sports Question 1
 Answer was correct!!!!
 Pat now has 2 Gold Coins.
+Player 1 won the game
+Player 0 won the game
 Chet is the current player
 They have rolled a 3
 Chet is getting out of the penalty box
@@ -36,3 +40,5 @@ The category is Pop
 Pop Question 0
 Answer was correct!!!!
 Chet now has 1 Gold Coins.
+Player 0 won the game
+Player 1 won the game

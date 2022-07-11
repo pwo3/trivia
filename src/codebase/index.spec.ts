@@ -1,8 +1,8 @@
+import runGoldenMaster from "jest-golden-master";
 import { Game } from ".";
-import runGoldenMaster from "../refactoring-utils";
 
-test("Scenario #0", () => {
-  runGoldenMaster(0, () => {
+test("one roll", async () => {
+  await runGoldenMaster("one roll", async () => {
     const game = new Game();
 
     game.add("Chet");
@@ -11,8 +11,8 @@ test("Scenario #0", () => {
   });
 });
 
-test("Scenario #1", () => {
-  runGoldenMaster(1, () => {
+test("correct answers", async () => {
+  await runGoldenMaster("correct answers", async () => {
     const game = new Game();
 
     game.add("Chet");
@@ -36,8 +36,8 @@ test("Scenario #1", () => {
   });
 });
 
-test("Scenario #2", () => {
-  runGoldenMaster(2, () => {
+test("one wrong answer", async () => {
+  await runGoldenMaster("one wrong answer", async () => {
     const game = new Game();
 
     game.add("Chet");
@@ -57,8 +57,8 @@ test("Scenario #2", () => {
   });
 });
 
-test("Scenario #3", () => {
-  runGoldenMaster(3, () => {
+test("moving out of penalty box", async () => {
+  await runGoldenMaster("moving out of penalty box", async () => {
     const game = new Game();
 
     game.add("Chet");
@@ -89,8 +89,8 @@ test("Scenario #3", () => {
   });
 });
 
-test("Scenario #4", () => {
-  runGoldenMaster(4, () => {
+test("in penalty box 2 turns", async () => {
+  await runGoldenMaster("in penalty box 2 turns", async () => {
     const game = new Game();
 
     game.add("Chet");
@@ -121,8 +121,8 @@ test("Scenario #4", () => {
   });
 });
 
-test("Scenario #4", () => {
-  runGoldenMaster(5, () => {
+test("one board complete turn", async () => {
+  await runGoldenMaster("one board complete turn", async () => {
     const game = new Game();
 
     game.add("Chet");
@@ -146,6 +146,210 @@ test("Scenario #4", () => {
   });
 });
 
-// Write test to handle place > 11 from penalty box
+test("one board complete turn from penalty box", async () => {
+  await runGoldenMaster("one board complete turn from penalty box", async () => {
+    const game = new Game();
 
-// Write test to check if the game is ended
+    game.add("Chet");
+    game.add("Pat");
+
+    // Chet turn
+    game.roll(4);
+    game.wasCorrectlyAnswered();
+
+    // Pat turn
+    game.roll(6);
+    game.wasCorrectlyAnswered();
+
+    // Chet turn
+    game.roll(6);
+    game.wrongAnswer();
+
+    // Pat turn
+    game.roll(6);
+    game.wasCorrectlyAnswered();
+
+    // Chet turn
+    game.roll(5);
+    game.wasCorrectlyAnswered();
+  });
+});
+
+test("get to place 8", async () => {
+  await runGoldenMaster("get to place 8", async () => {
+    const game = new Game();
+
+    game.add("Chet");
+    game.add("Pat");
+
+    // Chet turn
+    game.roll(6);
+    game.wasCorrectlyAnswered();
+
+    // Pat turn
+    game.roll(6);
+    game.wasCorrectlyAnswered();
+
+    // Chet turn
+    game.roll(2);
+    game.wasCorrectlyAnswered();
+  });
+});
+
+test("get to place 5", async () => {
+  await runGoldenMaster("get to place 5", async () => {
+    const game = new Game();
+
+    game.add("Chet");
+    game.add("Pat");
+
+    // Chet turn
+    game.roll(5);
+    game.wasCorrectlyAnswered();
+
+    // Pat turn
+    game.roll(6);
+    game.wasCorrectlyAnswered();
+  });
+});
+
+test("get to place 9", async () => {
+  await runGoldenMaster("get to place 9", async () => {
+    const game = new Game();
+
+    game.add("Chet");
+    game.add("Pat");
+
+    // Chet turn
+    game.roll(5);
+    game.wasCorrectlyAnswered();
+
+    // Pat turn
+    game.roll(6);
+    game.wasCorrectlyAnswered();
+
+    // Chet turn
+    game.roll(4);
+    game.wasCorrectlyAnswered();
+  });
+});
+
+test("last player in penalty box", async () => {
+  await runGoldenMaster("last player in penalty box", async () => {
+    const game = new Game();
+
+    game.add("Chet");
+    game.add("Pat");
+
+    // Chet turn
+    game.roll(5);
+    game.wasCorrectlyAnswered();
+
+    // Pat turn
+    game.roll(6);
+    game.wrongAnswer();
+  });
+});
+
+test("last player out of penalty box", async () => {
+  await runGoldenMaster("last player out of penalty box", async () => {
+    const game = new Game();
+
+    game.add("Chet");
+    game.add("Pat");
+
+    // Chet turn
+    game.roll(5);
+    game.wasCorrectlyAnswered();
+
+    // Pat turn
+    game.roll(6);
+    game.wrongAnswer();
+
+    // Chet turn
+    game.roll(5);
+    game.wasCorrectlyAnswered();
+
+    // Pat turn
+    game.roll(5);
+    game.wasCorrectlyAnswered();
+  });
+});
+
+test("last player in penalty box with good answer", async () => {
+  await runGoldenMaster("last player in penalty box with good answer", async () => {
+    const game = new Game();
+
+    game.add("Chet");
+    game.add("Pat");
+
+    // Chet turn
+    game.roll(5);
+    game.wasCorrectlyAnswered();
+
+    // Pat turn
+    game.roll(6);
+    game.wrongAnswer();
+
+    // Chet turn
+    game.roll(5);
+    game.wasCorrectlyAnswered();
+
+    // Pat turn
+    game.roll(6);
+    game.wasCorrectlyAnswered();
+  });
+});
+
+test("one player win", async () => {
+  await runGoldenMaster("one player win", async () => {
+    const game = new Game();
+
+    game.add("Chet");
+    game.add("Pat");
+
+    // Chet turn
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+
+    // Pat turn
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+
+    // Chet turn
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+
+    // Pat turn
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+
+    // Chet turn
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+
+    // Pat turn
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+
+    // Chet turn
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+
+    // Pat turn
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+
+    // Chet turn
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+
+    // Pat turn
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+
+    // Chet turn
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+  });
+});

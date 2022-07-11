@@ -1,3 +1,5 @@
+import { Questions } from "./Questions";
+
 /* eslint-disable */
 export class Game {
   private players: Array<string> = [];
@@ -7,23 +9,7 @@ export class Game {
   private currentPlayer: number = 0;
   private isGettingOutOfPenaltyBox: boolean = false;
 
-  private popQuestions: Array<string> = [];
-  private scienceQuestions: Array<string> = [];
-  private sportsQuestions: Array<string> = [];
-  private rockQuestions: Array<string> = [];
-
-  constructor() {
-    for (let i = 0; i < 50; i++) {
-      this.popQuestions.push("Pop Question " + i);
-      this.scienceQuestions.push("Science Question " + i);
-      this.sportsQuestions.push("Sports Question " + i);
-      this.rockQuestions.push(this.createRockQuestion(i));
-    }
-  }
-
-  private createRockQuestion(index: number): string {
-    return "Rock Question " + index;
-  }
+  private questions = new Questions(50);
 
   public add(name: string): boolean {
     this.players.push(name);
@@ -75,19 +61,25 @@ export class Game {
   }
 
   private askQuestion(): void {
-    if (this.currentCategory() == "Pop") console.log(this.popQuestions.shift());
-    if (this.currentCategory() == "Science") console.log(this.scienceQuestions.shift());
-    if (this.currentCategory() == "Sports") console.log(this.sportsQuestions.shift());
-    if (this.currentCategory() == "Rock") console.log(this.rockQuestions.shift());
+    // @ts-ignore
+    const question = this.questions.popQuestion(this.currentCategory().toLowerCase());
+
+    console.log(question);
   }
 
   private currentCategory(): string {
     if (this.places[this.currentPlayer] == 0) return "Pop";
     if (this.places[this.currentPlayer] == 4) return "Pop";
-    if (this.places[this.currentPlayer] == 8) return "Pop";
+    if (this.places[this.currentPlayer] == 8) {
+      return "Pop";
+    }
     if (this.places[this.currentPlayer] == 1) return "Science";
-    if (this.places[this.currentPlayer] == 5) return "Science";
-    if (this.places[this.currentPlayer] == 9) return "Science";
+    if (this.places[this.currentPlayer] == 5) {
+      return "Science";
+    }
+    if (this.places[this.currentPlayer] == 9) {
+      return "Science";
+    }
     if (this.places[this.currentPlayer] == 2) return "Sports";
     if (this.places[this.currentPlayer] == 6) return "Sports";
     if (this.places[this.currentPlayer] == 10) return "Sports";
@@ -95,6 +87,7 @@ export class Game {
   }
 
   private didPlayerWin(): boolean {
+    console.log(`Player ${this.currentPlayer} won the game`);
     return !(this.purses[this.currentPlayer] == 6);
   }
 
@@ -119,6 +112,8 @@ export class Game {
         this.currentPlayer += 1;
         if (this.currentPlayer == this.players.length) this.currentPlayer = 0;
 
+        console.log(`Player ${this.currentPlayer} won the game`);
+
         return winner;
       } else {
         console.log("Answer was correct but still in penalty box, moving to next player");
@@ -136,6 +131,8 @@ export class Game {
 
       this.currentPlayer += 1;
       if (this.currentPlayer == this.players.length) this.currentPlayer = 0;
+
+      console.log(`Player ${this.currentPlayer} won the game`);
 
       return winner;
     }
