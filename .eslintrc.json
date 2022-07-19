@@ -17,6 +17,7 @@
     "import/extensions": ["off"],
     "max-len": ["off"],
     "quotes": ["error", "double"],
-    "import/prefer-default-export": ["warn"]
+    "import/prefer-default-export": ["warn"],
+    "class-methods-use-this": ["off"]
   }
 }

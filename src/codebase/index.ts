@@ -39,10 +39,7 @@ export class Game {
         this.isGettingOutOfPenaltyBox = true;
 
         console.log(this.players[this.currentPlayer] + " is getting out of the penalty box");
-        this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
-        if (this.places[this.currentPlayer] > 11) {
-          this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
-        }
+        this.places[this.currentPlayer] = this.board.moveToNextPosition(this.places[this.currentPlayer], roll);
 
         console.log(this.players[this.currentPlayer] + "'s new location is " + this.places[this.currentPlayer]);
         console.log("The category is " + this.currentCategory());
@@ -52,10 +49,7 @@ export class Game {
         this.isGettingOutOfPenaltyBox = false;
       }
     } else {
-      this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
-      if (this.places[this.currentPlayer] > 11) {
-        this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
-      }
+      this.places[this.currentPlayer] = this.board.moveToNextPosition(this.places[this.currentPlayer], roll);
 
       console.log(this.players[this.currentPlayer] + "'s new location is " + this.places[this.currentPlayer]);
       console.log("The category is " + this.currentCategory());

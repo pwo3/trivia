@@ -11,6 +11,10 @@ class Board {
   getCurrentCategory = (place: number): Category => {
     return this.CATEGORY_BY_PLACE[place % 4];
   };
+
+  moveToNextPosition = (place: number, roll: number): number => {
+    return (place + roll) % 12;
+  };
 }
 
 export default Board;
