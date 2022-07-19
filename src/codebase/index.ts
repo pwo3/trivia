@@ -16,6 +16,10 @@ export class Game {
     return this.players[this.currentPlayerIndex];
   }
 
+  private switchToNextPlayer(): void {
+    this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.players.length;
+  }
+
   public add(name: string): boolean {
     this.players.push(new Player(name));
 
@@ -73,8 +77,8 @@ export class Game {
     console.log(this.getCurrentPlayer().log() + " was sent to the penalty box");
     this.getCurrentPlayer().provideWrongAnswer();
 
-    this.currentPlayerIndex += 1;
-    if (this.currentPlayerIndex == this.players.length) this.currentPlayerIndex = 0;
+    this.switchToNextPlayer();
+
     return true;
   }
 
@@ -94,8 +98,9 @@ export class Game {
         return winner;
       } else {
         console.log("Answer was correct but still in penalty box, moving to next player");
-        this.currentPlayerIndex += 1;
-        if (this.currentPlayerIndex == this.players.length) this.currentPlayerIndex = 0;
+
+        this.switchToNextPlayer();
+
         return true;
       }
     } else {
@@ -106,8 +111,7 @@ export class Game {
 
       var winner = this.didPlayerWin();
 
-      this.currentPlayerIndex += 1;
-      if (this.currentPlayerIndex == this.players.length) this.currentPlayerIndex = 0;
+      this.switchToNextPlayer();
 
       console.log(`Player ${this.currentPlayerIndex} won the game`);
 
