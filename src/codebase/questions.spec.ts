@@ -1,4 +1,5 @@
-import { Category, createQuestions, Questions } from "./Questions";
+import Questions, { createQuestions } from "./Questions";
+import { Category } from "./types";
 
 test("create questions by type", () => {
   // GIVEN

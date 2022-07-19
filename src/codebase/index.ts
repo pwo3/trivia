@@ -1,5 +1,6 @@
-import { getCurrentCategory } from "./Board";
-import { capitalizeFirstLetter, Questions } from "./Questions";
+import Board from "./Board";
+import Questions from "./Questions";
+import { capitalizeFirstLetter } from "./utils";
 
 /* eslint-disable */
 export class Game {
@@ -11,6 +12,7 @@ export class Game {
   private isGettingOutOfPenaltyBox: boolean = false;
 
   private questions = new Questions(50);
+  private board = new Board();
 
   public add(name: string): boolean {
     this.players.push(name);
@@ -69,7 +71,7 @@ export class Game {
   }
 
   private currentCategory(): string {
-    return capitalizeFirstLetter(getCurrentCategory(this.places[this.currentPlayer]));
+    return capitalizeFirstLetter(this.board.getCurrentCategory(this.places[this.currentPlayer]));
   }
 
   private didPlayerWin(): boolean {

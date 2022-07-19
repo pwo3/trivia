@@ -1,15 +1,11 @@
-export type Category = "pop" | "science" | "sports" | "rock";
-
-// Move to utils
-export const capitalizeFirstLetter = (str: string) => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
+import { Category } from "./types";
+import { capitalizeFirstLetter } from "./utils";
 
 export const createQuestions = (type: Category, numberOfQuestions: number) => {
   return [...Array(numberOfQuestions)].map((_, i) => capitalizeFirstLetter(`${type} Question ${i}`));
 };
 
-export class Questions {
+class Questions {
   private questions: Record<Category, Array<string>> = {
     pop: [],
     science: [],
@@ -28,11 +24,13 @@ export class Questions {
     };
   }
 
-  public popQuestion(category: Category): string {
+  popQuestion = (category: Category): string => {
     const question = this.questions[category][0];
 
     this.questions[category] = this.questions[category].slice(1);
 
     return question;
-  }
+  };
 }
+
+export default Questions;

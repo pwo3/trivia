@@ -1,12 +1,16 @@
-import { Category } from "./Questions";
+import { Category } from "./types";
 
-const CATEGORY_BY_PLACE: Record<0 | 1 | 2 | 3, Category> = {
-  0: "pop",
-  1: "science",
-  2: "sports",
-  3: "rock",
-};
+class Board {
+  private CATEGORY_BY_PLACE: Record<0 | 1 | 2 | 3, Category> = {
+    0: "pop",
+    1: "science",
+    2: "sports",
+    3: "rock",
+  };
 
-export const getCurrentCategory = (place: number) => {
-  return CATEGORY_BY_PLACE[place % 4];
-};
+  getCurrentCategory = (place: number): Category => {
+    return this.CATEGORY_BY_PLACE[place % 4];
+  };
+}
+
+export default Board;

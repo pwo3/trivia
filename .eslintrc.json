@@ -16,6 +16,7 @@
     "import/no-unresolved": ["off"],
     "import/extensions": ["off"],
     "max-len": ["off"],
-    "quotes": ["error", "double"]
+    "quotes": ["error", "double"],
+    "import/prefer-default-export": ["warn"]
   }
 }
