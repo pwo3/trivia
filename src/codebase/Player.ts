@@ -14,6 +14,10 @@ class Player {
   move =
     (board: Board) =>
     (roll: number): void => {
+      if (roll % 2 !== 0) {
+        this.isInPenaltyBox = false;
+      }
+
       this.place = board.moveToNextPosition(this.place, roll);
     };
 
