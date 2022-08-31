@@ -7,7 +7,7 @@ describe("Player", () => {
     const player = new Player("Pat");
 
     // WHEN
-    player.provideWrongAnswer();
+    player.moveToPenaltyBox();
 
     // THEN
     expect(player.getIsInPenaltyBox()).toBeTruthy();
@@ -17,7 +17,7 @@ describe("Player", () => {
     // GIVEN
     const board = new Board();
     const player = new Player("Pat");
-    player.provideWrongAnswer();
+    player.moveToPenaltyBox();
 
     // WHEN
     player.move(board)(3);
@@ -30,7 +30,7 @@ describe("Player", () => {
     // GIVEN
     const board = new Board();
     const player = new Player("Pat");
-    player.provideWrongAnswer();
+    player.moveToPenaltyBox();
 
     // WHEN
     player.move(board)(4);
@@ -43,7 +43,7 @@ describe("Player", () => {
     // GIVEN
     const board = new Board();
     const player = new Player("Pat");
-    player.provideWrongAnswer();
+    player.moveToPenaltyBox();
 
     // WHEN
     player.move(board)(6);

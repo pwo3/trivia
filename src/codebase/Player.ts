@@ -1,4 +1,6 @@
 import Board from "./Board";
+import Questions from "./Questions";
+import { capitalizeFirstLetter } from "./utils";
 
 class Player {
   private place: number = 0;
@@ -7,8 +9,20 @@ class Player {
 
   constructor(private name: string) {}
 
-  private scorePoint = (): void => {
+  askQuestion = ({ board, questions }: { board: Board; questions: Questions }): void => {
+    const currentCategory = board.getCurrentCategory(this.place);
+
+    console.log("The category is " + capitalizeFirstLetter(currentCategory));
+
+    const question = questions.popQuestion(currentCategory);
+
+    console.log(question);
+  };
+
+  scorePoint = (): void => {
     this.score += 1;
+
+    console.log(this.name + " now has " + this.score + " Gold Coins.");
   };
 
   move =
@@ -27,14 +41,12 @@ class Player {
     return this.place;
   };
 
-  provideGoodAnswer = (): void => {
-    this.scorePoint();
-
-    console.log(this.name + " now has " + this.score + " Gold Coins.");
+  moveToPenaltyBox = (): void => {
+    this.isInPenaltyBox = true;
   };
 
-  provideWrongAnswer = (): void => {
-    this.isInPenaltyBox = true;
+  moveOutOfPenaltyBox = (): void => {
+    this.isInPenaltyBox = false;
   };
 
   getScore = () => {
