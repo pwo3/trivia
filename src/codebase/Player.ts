@@ -19,6 +19,8 @@ class Player {
       }
 
       this.place = board.moveToNextPosition(this.place, roll);
+
+      console.log(this.name + "'s new location is " + this.place);
     };
 
   getCurrentPlace = (): number => {
@@ -27,6 +29,8 @@ class Player {
 
   provideGoodAnswer = (): void => {
     this.scorePoint();
+
+    console.log(this.name + " now has " + this.score + " Gold Coins.");
   };
 
   provideWrongAnswer = (): void => {

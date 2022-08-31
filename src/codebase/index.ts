@@ -6,8 +6,6 @@ import { capitalizeFirstLetter } from "./utils";
 
 /* eslint-disable */
 export class Game {
-  private isGettingOutOfPenaltyBox: boolean = false;
-
   private questions = new Questions(50);
   private board = new Board();
   private players = new AllPlayers();
@@ -24,30 +22,17 @@ export class Game {
 
     if (this.players.getCurrentPlayer().getIsInPenaltyBox()) {
       if (roll % 2 != 0) {
-        this.isGettingOutOfPenaltyBox = true;
-
         console.log(this.players.getCurrentPlayer().log() + " is getting out of the penalty box");
         this.players.getCurrentPlayer().move(this.board)(roll);
 
-        console.log(
-          this.players.getCurrentPlayer().log() +
-            "'s new location is " +
-            this.players.getCurrentPlayer().getCurrentPlace()
-        );
         console.log("The category is " + this.currentCategory());
         this.askQuestion();
       } else {
         console.log(this.players.getCurrentPlayer().log() + " is not getting out of the penalty box");
-        this.isGettingOutOfPenaltyBox = false;
       }
     } else {
       this.players.getCurrentPlayer().move(this.board)(roll);
 
-      console.log(
-        this.players.getCurrentPlayer().log() +
-          "'s new location is " +
-          this.players.getCurrentPlayer().getCurrentPlace()
-      );
       console.log("The category is " + this.currentCategory());
       this.askQuestion();
     }
@@ -81,40 +66,15 @@ export class Game {
 
   public wasCorrectlyAnswered(): boolean {
     if (this.players.getCurrentPlayer().getIsInPenaltyBox()) {
-      if (this.isGettingOutOfPenaltyBox) {
-        console.log("Answer was correct!!!!");
-        this.players.getCurrentPlayer().provideGoodAnswer();
-        console.log(
-          this.players.getCurrentPlayer().log() +
-            " now has " +
-            this.players.getCurrentPlayer().getScore() +
-            " Gold Coins."
-        );
+      console.log("Answer was correct but still in penalty box, moving to next player");
 
-        var winner = this.didPlayerWin();
+      this.players.switchToNextPlayer();
 
-        this.players.switchToNextPlayer();
-
-        console.log(`Player ${this.players.getCurrentPlayerIndex()} won the game`);
-
-        return winner;
-      } else {
-        console.log("Answer was correct but still in penalty box, moving to next player");
-
-        this.players.switchToNextPlayer();
-
-        return true;
-      }
+      return true;
     } else {
       console.log("Answer was correct!!!!");
 
       this.players.getCurrentPlayer().provideGoodAnswer();
-      console.log(
-        this.players.getCurrentPlayer().log() +
-          " now has " +
-          this.players.getCurrentPlayer().getScore() +
-          " Gold Coins."
-      );
 
       var winner = this.didPlayerWin();
 
