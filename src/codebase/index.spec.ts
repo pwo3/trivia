@@ -6,6 +6,7 @@ test("one roll", async () => {
     const game = new Game();
 
     game.add("Chet");
+    game.start();
 
     game.roll(1);
   });
@@ -17,6 +18,7 @@ test("correct answers", async () => {
 
     game.add("Chet");
     game.add("Pat");
+    game.start();
 
     game.roll(1);
 
@@ -42,6 +44,7 @@ test("one wrong answer", async () => {
 
     game.add("Chet");
     game.add("Pat");
+    game.start();
 
     game.roll(1);
 
@@ -63,6 +66,7 @@ test("moving out of penalty box", async () => {
 
     game.add("Chet");
     game.add("Pat");
+    game.start();
 
     // Chet turn
     game.roll(1);
@@ -95,6 +99,7 @@ test("in penalty box 2 turns", async () => {
 
     game.add("Chet");
     game.add("Pat");
+    game.start();
 
     // Chet turn
     game.roll(1);
@@ -127,6 +132,7 @@ test("one board complete turn", async () => {
 
     game.add("Chet");
     game.add("Pat");
+    game.start();
 
     // Chet turn
     game.roll(6);
@@ -152,6 +158,7 @@ test("one board complete turn from penalty box", async () => {
 
     game.add("Chet");
     game.add("Pat");
+    game.start();
 
     // Chet turn
     game.roll(4);
@@ -181,6 +188,7 @@ test("get to place 8", async () => {
 
     game.add("Chet");
     game.add("Pat");
+    game.start();
 
     // Chet turn
     game.roll(6);
@@ -202,6 +210,7 @@ test("get to place 5", async () => {
 
     game.add("Chet");
     game.add("Pat");
+    game.start();
 
     // Chet turn
     game.roll(5);
@@ -219,6 +228,7 @@ test("get to place 9", async () => {
 
     game.add("Chet");
     game.add("Pat");
+    game.start();
 
     // Chet turn
     game.roll(5);
@@ -240,6 +250,7 @@ test("last player in penalty box", async () => {
 
     game.add("Chet");
     game.add("Pat");
+    game.start();
 
     // Chet turn
     game.roll(5);
@@ -257,6 +268,7 @@ test("last player out of penalty box", async () => {
 
     game.add("Chet");
     game.add("Pat");
+    game.start();
 
     // Chet turn
     game.roll(5);
@@ -282,6 +294,7 @@ test("last player in penalty box with good answer", async () => {
 
     game.add("Chet");
     game.add("Pat");
+    game.start();
 
     // Chet turn
     game.roll(5);
@@ -307,6 +320,7 @@ test("one player win", async () => {
 
     game.add("Chet");
     game.add("Pat");
+    game.start();
 
     // Chet turn
     game.roll(1);
@@ -352,4 +366,16 @@ test("one player win", async () => {
     game.roll(1);
     game.wasCorrectlyAnswered();
   });
+});
+
+test("should not add player after start", () => {
+  // GIVEN
+  const game = new Game();
+
+  // WHEN
+  game.add("Chet");
+  game.start();
+
+  // THEN
+  expect(() => game.add("Pat")).toThrow();
 });
